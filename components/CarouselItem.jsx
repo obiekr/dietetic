@@ -6,7 +6,7 @@ export default function CarouselItem() {
     return (
         <a href="#" className={`mt-20 flex flex-col rounded-lg border border-gray-200 shadow-md overflow-hidden w-full h-52 bg-red-400 hover:bg-red-300 my-auto`}>
             <div className="my-auto">
-                <h5 className={'mb-2 text-xl text-center font-bold text-gray-900'}>Monday</h5>
+                <h5 className={'mb-4 text-xl text-center font-bold text-gray-900'}>Monday</h5>
                 <div className="mb-3  rounded-full flex justify-center">
                     <div className="mx-2 w-20 text-center">
                         <Image src={food} alt="" width={50} height={50} layout='responsive' className='' />
