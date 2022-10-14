@@ -11,7 +11,7 @@ export default function Navbar() {
           <a href="#">
             <ActionIcon variant='default'><IconUserCircle size={30}/></ActionIcon>
           </a>
-          <h1 className="ml-6 text-xl">Hello, Budi</h1>
+          <h1 className="ml-6 text-xl">Hello, Budiman</h1>
         </div>
         <ul className='flex items-center'>
           <li>
