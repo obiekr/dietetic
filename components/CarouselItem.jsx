@@ -19,26 +19,26 @@ export default function CarouselItem({ date }) {
     // console.log(color[day[date.getDay()]][0]);
     return (
         <Link href="schedule/1">
-            <div href="#" className={`mt-20 flex flex-col rounded-lg border border-gray-200 shadow-md overflow-hidden w-full h-52 ${color[day[date.getDay()]][0]} my-auto hover:cursor-pointer`}>
+            <div href="#" className={`mt-20 flex flex-col rounded-lg border border-gray-200 shadow-md overflow-hidden w-auto h-72 ${color[day[date.getDay()]][0]} my-auto hover:cursor-pointer`}>
                 <div className="my-auto">
                     <h5 className={`first-letter:first-line:mb-4 text-xl text-start font-bold mx-5 ${color[day[date.getDay()]][1]} absolute`}>{date.getDate()}</h5>
                     <h5 className={`mb-4 text-xl text-center font-bold ${color[day[date.getDay()]][1]}`}>{day[date.getDay()]}</h5>
-                    <div className="mb-3  rounded-full flex justify-center">
-                        <div className="mx-2 w-20 text-center">
+                    <div className="mb-3 pt-4 px-2 md:w-auto w-96 rounded-full flex justify-center">
+                        <div className="mx-2 w-32 text-center">
                             <Image src={food} alt="" width={50} height={50} layout='responsive' className='' />
-                            <h5 className='text-sm text-gray-800'>Breakfast</h5>
+                            <h5 className='text-md text-gray-800'>Breakfast</h5>
                         </div>
-                        <div className="mx-2 w-20 text-center">
+                        <div className="mx-2 w-32 text-center">
                             <Image src={food} alt="" width={50} height={50} layout='responsive' className='' />
-                            <h5 className='text-sm text-gray-800'>Lunch</h5>
+                            <h5 className='text-md text-gray-800'>Lunch</h5>
                         </div>
-                        <div className="mx-2 w-20 text-center">
+                        <div className="mx-2 w-32 text-center">
                             <Image src={food} alt="" width={50} height={50} layout='responsive' className='' />
-                            <h5 className='text-sm text-gray-800'>Dinner</h5>
+                            <h5 className='text-md text-gray-800'>Dinner</h5>
                         </div>
-                        <div className="mx-2 w-20 text-center">
+                        <div className="mx-2 w-32 text-center">
                             <Image src={food} alt="" width={50} height={50} layout='responsive' className='' />
-                            <h5 className='text-sm text-gray-800'>Snack</h5>
+                            <h5 className='text-md text-gray-800'>Snack</h5>
                         </div>
                     </div>
                 </div>

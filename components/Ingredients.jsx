@@ -1,8 +1,16 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
 export default function Ingredient({ingred}) {
 
     const [isActive, setIsActive] =  useState(false)
+
+    useEffect(() => {
+        if (isActive == true) {
+            localStorage.setItem("selected", JSON.stringify(ingred))
+        } else if (isActive == false) {
+            localStorage.removeItem("selected")
+        }
+    })
 
     const handleClick = () => {
         setIsActive(current => !current)

@@ -7,10 +7,13 @@ export default function Date() {
     return (
         <>
             <div className='w-full py-10 bg-[#EFC5C5] '>
-                <h1 className='text-center font-bold md:text-5xl text-3xl'>My Monday Meal</h1>                </div>
+                <h1 className='text-center font-bold md:text-5xl text-3xl'>My Monday Meal</h1>
+            </div>
             <div className="mt-16"></div>
             <div className="flex justify-center flex-wrap">
-                <div className="mx-10 my-16"><MealPlan category="Breakfast" foodname="Pecel Lele"/></div>                    <div className="mx-10 my-16"><MealPlan category="Lunch" foodname="Fried Chicken"/></div>                </div>
+                <div className="mx-10 my-16"><MealPlan category="Breakfast" foodname="Pecel Lele"/></div>
+                <div className="mx-10 my-16"><MealPlan category="Lunch" foodname="Fried Chicken"/></div>
+            </div>
             <div className="flex justify-center flex-wrap">
                 <div className="mx-10 my-16"><MealPlan category="Dinner" foodname="B7BDF3"/></div>
                 <div className="mx-10 my-16"><MealPlan category="Snack" foodname="ABE3B1"/></div>

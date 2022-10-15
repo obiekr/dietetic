@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { SearchBar } from '../components/SearchBar'
 import Food from '../components/Food'
-import { fetchAPI } from '../libs/fetchApi'
+import { fetchRecipe } from '../libs/fetchApi'
 import { SimpleGrid } from '@mantine/core'
 import Link from 'next/link'
 
@@ -13,13 +13,7 @@ export default function Find() {
   const fetchData = async () => {
     console.log("search: ", search)
 
-    const params = {
-      q: search,
-      type: "public",
-      diet: "balanced"
-    }
-
-    const req = await fetchAPI("/recipes/v2", params)
+    const req = await fetchRecipe(search)
     console.log(req)
     setLoading(false)
     return setRecipes(req.hits);

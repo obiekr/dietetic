@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Navbar from "../components/Navbar"
 import Ingredient from "../components/Ingredients"
 import egg from '../public/egg.png'
@@ -7,8 +7,13 @@ import apple from '../public/red apple.png'
 import bun from '../public/Sesame bun.png'
 import Image from "next/image"
 import styles from "../styles/Ingredient.module.css"
+import Link from "next/link"
 
 export default function Ingredients() {
+    function saveHandler(e){
+        e.preventDefault()
+        localStorage.setItem("selected", "")
+    }
     return (
         <div>
             <Navbar />
@@ -22,15 +27,15 @@ export default function Ingredients() {
                                     <div className="mx-auto text-center font-bold">CARBS</div>
                                 </div>
                                 <div className="flex flex-wrap">
-                                    <Ingredient ingred="oats"/>
-                                    <Ingredient ingred="quinoa"/>
-                                    <Ingredient ingred="potato"/>
-                                    <Ingredient ingred="lentils"/>
-                                    <Ingredient ingred="pasta"/>
-                                    <Ingredient ingred="tortilla"/>
-                                    <Ingredient ingred="bread"/>
-                                    <Ingredient ingred="pita"/>
-                                    <Ingredient ingred="corn"/>
+                                    <Ingredient ingred="oats" />
+                                    <Ingredient ingred="quinoa" />
+                                    <Ingredient ingred="potato" />
+                                    <Ingredient ingred="lentils" />
+                                    <Ingredient ingred="pasta" />
+                                    <Ingredient ingred="tortilla" />
+                                    <Ingredient ingred="bread" />
+                                    <Ingredient ingred="pita" />
+                                    <Ingredient ingred="corn" />
                                 </div>
                             </div>
                         </div>
@@ -44,14 +49,14 @@ export default function Ingredients() {
                                     <div className="mx-auto text-center font-bold">PROTEIN</div>
                                 </div>
                                 <div className="flex flex-wrap">
-                                    <Ingredient ingred="beef"/>
-                                    <Ingredient ingred="cheese"/>
-                                    <Ingredient ingred="chicken"/>
-                                    <Ingredient ingred="turkey"/>
-                                    <Ingredient ingred="pork"/>
-                                    <Ingredient ingred="fish"/>
-                                    <Ingredient ingred="lamb"/>
-                                    <Ingredient ingred="eggs"/>
+                                    <Ingredient ingred="beef" />
+                                    <Ingredient ingred="cheese" />
+                                    <Ingredient ingred="chicken" />
+                                    <Ingredient ingred="turkey" />
+                                    <Ingredient ingred="pork" />
+                                    <Ingredient ingred="fish" />
+                                    <Ingredient ingred="lamb" />
+                                    <Ingredient ingred="eggs" />
                                 </div>
                             </div>
                         </div>
@@ -65,15 +70,15 @@ export default function Ingredients() {
                                     <div className="mx-auto text-center font-bold">FAT</div>
                                 </div>
                                 <div className="flex flex-wrap">
-                                    <Ingredient ingred="strawberry"/>
-                                    <Ingredient ingred="blueberry"/>
-                                    <Ingredient ingred="blackberry"/>
-                                    <Ingredient ingred="grape"/>
-                                    <Ingredient ingred="pear"/>
-                                    <Ingredient ingred="kiwi"/>
-                                    <Ingredient ingred="orange"/>
-                                    <Ingredient ingred="apple"/>
-                                    <Ingredient ingred="cherry"/>
+                                    <Ingredient ingred="strawberry" />
+                                    <Ingredient ingred="blueberry" />
+                                    <Ingredient ingred="blackberry" />
+                                    <Ingredient ingred="grape" />
+                                    <Ingredient ingred="pear" />
+                                    <Ingredient ingred="kiwi" />
+                                    <Ingredient ingred="orange" />
+                                    <Ingredient ingred="apple" />
+                                    <Ingredient ingred="cherry" />
                                 </div>
                             </div>
                         </div>
@@ -87,22 +92,24 @@ export default function Ingredients() {
                                     <div className="mx-auto text-center font-bold">FRUITS</div>
                                 </div>
                                 <div className="flex flex-wrap">
-                                    <Ingredient ingred="walnuts"/>
-                                    <Ingredient ingred="flex seeds"/>
-                                    <Ingredient ingred="hemp seeds"/>
-                                    <Ingredient ingred="chia seeds"/>
-                                    <Ingredient ingred="avocado"/>
-                                    <Ingredient ingred="chasews"/>
-                                    <Ingredient ingred="almond"/>
+                                    <Ingredient ingred="walnuts" />
+                                    <Ingredient ingred="flex seeds" />
+                                    <Ingredient ingred="hemp seeds" />
+                                    <Ingredient ingred="chia seeds" />
+                                    <Ingredient ingred="avocado" />
+                                    <Ingredient ingred="chasews" />
+                                    <Ingredient ingred="almond" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="flex justify-center">
-                    <button className="m-6 px-10 p-5 bg-[#C3DBFF] hover:bg-blue-100 font-bold rounded-xl items-center">SAVE</button>
+                <div className="flex justify-center" >
+                    <Link href="/" onClick={(e) => {saveHandler(e)}}>
+                        <button className="m-6 px-10 p-5 bg-[#C3DBFF] hover:bg-blue-100 font-bold rounded-xl items-center">SAVE</button>
+                    </Link>
                 </div>
             </div>
-       </div>
+        </div>
     )
 }
