@@ -19,19 +19,21 @@ export default function Find() {
     }
 
     const req = await fetchAPI("/recipes/v2", params)
+    console.log(req)
     return setRecipes(req.hits);
   }
 
   console.log(recipes);
   const handleClick = (e) => {
     e.preventDefault();
-    // fetchData();
+    fetchData();
+    // console.log("CLICKED")
   }
 
   const foods = recipes
   ? recipes.map((recipe, index) => {
     return (
-      <Link key={index} href="/">
+      <Link key={index} href={`/food/${recipe.label}`}>
         <Food key={index} recipe={recipe.recipe}/>
       </Link>
     )
@@ -49,26 +51,6 @@ export default function Find() {
           <SimpleGrid cols={4}>
             {foods}
           </SimpleGrid>
-          {/* <div className="flex justify-between">
-            <Food />
-            <Food />
-            <Food />
-            <Food />
-          </div>
-          <div className="flex justify-between">
-            <Food />
-            <Food />
-            <Food />
-            <Food />
-          </div>
-          <div className="flex justify-between">
-            <Food />
-            <Food />
-            <Food />
-            <Food />
-          </div> */}
-
-        {/* </div> */}
       </div>
     </div>
   )

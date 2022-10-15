@@ -14,6 +14,7 @@
     "@mantine/core": "^5.5.5",
     "@mantine/hooks": "^5.5.5",
     "@mantine/next": "^5.5.5",
+    "@skolacode/calendar-js": "^1.0.0",
     "@tabler/icons": "^1.104.0",
     "dotenv": "^16.0.3",
     "embla-carousel-react": "^7.0.3",

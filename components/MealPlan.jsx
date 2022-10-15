@@ -7,26 +7,15 @@ import Image from "next/image"
 import Link from 'next/link'
 
 export default function MealPlan({ category, foodname, cal, time }) {
-  let color, hoverCol
-  if (category === 'Breakfast') {
-    color = 'D0E0FF'
-    hoverCol = 'B1CCFF'
-  }
-  else if (category === 'Lunch') {
-    color = 'FFF6AA'
-    hoverCol = "F4EA91"
-  } else if (category === "Dinner") {
-    color = "B7BDF3"
-    hoverCol = "AAB1EF"
-  } else {
-    color = "ABE3B1"
-    hoverCol = "92DF9A"
-  }
-
+  let color = {'Breakfast': ['bg-[#D0E0FF]', "hover:bg-[#B1CCFF]"], 
+  "Lunch": ['bg-[#FFF6AA]', 'hover:bg-[#F4EA91]'],
+  "Dinner": ["bg-[#B7BDF3]","hover:bg-[#AAB1EF]"],
+  "Snack": ["bg-[#ABE3B1]", "hover:bg-[#92DF9A]"],
+}
 
   return (
-    <Link href={`/${foodname}`}>
-      <div className={`px-48 py-20 bg-[#${color}] relative rounded-2xl hover:cursor-pointer hover:bg-[#${hoverCol}]`}>
+    <Link href={`/food/${foodname}`}>
+      <div className={`px-48 py-20 ${color[category][0]} relative rounded-2xl hover:cursor-pointer ${color[category][1]}`}>
         <div className="absolute -top-20 right-5">
           <Image src={food} alt="" width={170} height={170} className='' />
         </div>

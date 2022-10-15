@@ -1,37 +1,42 @@
 import Image from 'next/image'
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import foodPic from "../../public/food.png"
 import { useRouter } from 'next/router'
 import { fetchAPI } from '../../libs/fetchApi'
 
 export default function FoodContent() {
     const router = useRouter();
-    const { id } = router.query;
 
     const [recipe, setRecipe] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const fetchRecipe = async () => {
-        const res = await fetchAPI(`/api/recipes/v2/${id}`);
+    useEffect(() => {
+        const {isReady, query} = router
 
-        if(res.status == 200){
-            setRecipe(res);
-            console.log(recipe);
-            return;
+        if(isReady){
+            const { id } = query;
+            const fetchRecipe = async () => {
+                setIsLoading(true);
+                const res = await fetchAPI(`/recipes/v2/${id}`, {'type': 'public'}, {'mode' : 'cors'});
+
+                setRecipe(res.recipe);
+                setIsLoading(false);
+            }
+
+            fetchRecipe()
         }
-
-        console.log("Fetching recipe error");
-    }
+    }, [router]);
     
-    
-
+    console.log(recipe)
+    const {label, image, mealType, ingredientLines } = recipe
 
     return (
-        <div className>
+        <div className="">
             <div className="max-w-full mb-10 px-1 py-10 bg-[#D0E0FF] ">
                 <h1 className="text-center font-bold">Breakfast</h1>
             </div>
             <div className="">
-                <h1 className='mx-auto font-semibold text-center'>Nama Makanan</h1>
+                <h1 className='mx-auto font-semibold text-center'>123</h1>
 
                 <div className="flex justify-center max-w-full">
                     <div className="bg-[#D0E0FF] flex justify-between items-center relative py-5 px-56">

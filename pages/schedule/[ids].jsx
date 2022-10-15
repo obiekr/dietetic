@@ -4,7 +4,6 @@ import MealPlan from '../../components/MealPlan';
 
 export default function Date() {
     const router = useRouter()
-    const pid = router.query
     return (
         <>
             <div className='w-full py-10 bg-[#EFC5C5] '>

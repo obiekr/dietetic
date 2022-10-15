@@ -11,8 +11,8 @@ export async function fetchAPI(path, paramsObj={}, options={}){
     }
 
     const params = {
-        "app_id" : "750c755a",
-        "app_key" :"9bd46b46d5337fc020d778dc0dfca886" 	,
+        "app_id" : "189e6750",
+        "app_key" :"b52dae2d0dc1b7db57b13dfd7e1b5ae2" 	,
         ...paramsObj
     }
 
