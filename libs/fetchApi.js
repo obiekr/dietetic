@@ -1,6 +1,6 @@
 import qs from 'qs';    
 
- async function fetchAPI(path, paramsObj={}, options={}){
+export async function fetchAPI(path, paramsObj={}, options={}){
     const {headers, ...option} = options
     const mergedOption = {
         headers: {
@@ -10,7 +10,13 @@ import qs from 'qs';
         ...option
     }
 
-    const queryStr = qs.stringify(paramsObj)
+    const params = {
+        "app_id" : "750c755a",
+        "app_key" :"9bd46b46d5337fc020d778dc0dfca886" 	,
+        ...paramsObj
+    }
+
+    const queryStr = qs.stringify(params)
     const reqURL = `https://api.edamam.com/api${path}${queryStr? `?${queryStr}` : ""}`
 
     const res = await fetch(reqURL, mergedOption)

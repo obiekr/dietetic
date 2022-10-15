@@ -1,9 +1,30 @@
 import Image from 'next/image'
-import React from "react"
-import foodPic from "../public/food.png"
+import React, {useState} from "react"
+import foodPic from "../../public/food.png"
+import { useRouter } from 'next/router'
+import { fetchAPI } from '../../libs/fetchApi'
+
+export default function FoodContent() {
+    const router = useRouter();
+    const { id } = router.query;
+
+    const [recipe, setRecipe] = useState(null);
+
+    const fetchRecipe = async () => {
+        const res = await fetchAPI(`/api/recipes/v2/${id}`);
+
+        if(res.status == 200){
+            setRecipe(res);
+            console.log(recipe);
+            return;
+        }
+
+        console.log("Fetching recipe error");
+    }
+    
+    
 
 
-export default function food(a) {
     return (
         <div className>
             <div className="max-w-full mb-10 px-1 py-10 bg-[#D0E0FF] ">

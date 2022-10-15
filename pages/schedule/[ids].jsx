@@ -12,12 +12,12 @@ export default function Date() {
             </div>
             <div className="mt-16"></div>
             <div className="flex justify-center">
-                <div className="mx-10 my-16"><MealPlan category="Breakfast" color="#D0E0FF"/></div>
-                <div className="mx-10 my-16"><MealPlan category="Lunch" color="#FFF6AA"/></div>
+                <div className="mx-10 my-16"><MealPlan category="Breakfast" foodname="Pecel Lele"/></div>
+                <div className="mx-10 my-16"><MealPlan category="Lunch" foodname="Fried Chicken"/></div>
             </div>
             <div className="flex justify-center">
-                <div className="mx-10 my-16"><MealPlan category="Dinner" color="#B7BDF3"/></div>
-                <div className="mx-10 my-16"><MealPlan category="Snack" color="#ABE3B1"/></div>
+                <div className="mx-10 my-16"><MealPlan category="Dinner" foodname="B7BDF3"/></div>
+                <div className="mx-10 my-16"><MealPlan category="Snack" foodname="ABE3B1"/></div>
             </div>
         </>
 

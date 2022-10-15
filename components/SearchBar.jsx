@@ -1,11 +1,24 @@
 import React from 'react'
+import { ActionIcon } from '@mantine/core'
+import { IconSearch } from '@tabler/icons'
 
-export const SearchBar = () => {
+export const SearchBar = ({ handleClick, setSearch }) => {
+    function searchHandler(e) {
+        e.preventDefault()
+        setSearch(e.target.value)
+    }
+
     return (
-        <div className='py-10 bg-[#C3DBFF] w-full'>
-            <div className="w-full flex justify-center">
-                <input type="text" className='w-full mx-5 py-5 px-5 rounded-3xl' placeholder='Search' />
+        <form onSubmit={(e) => {handleClick}}>
+        <div className="py-10 bg-[#C3DBFF] w-full">
+                <div className="mx-5 shadow flex bg-white rounded-3xl focus:outline-2 focus:outline-dashed focus:outline-black">
+                    <input type="text" placeholder="Search" className="w-full rounded-3xl pl-5 focus:outline-none " onChange={(e) => { searchHandler(e) }}/>
+                    <button  className="w-auto flex justify-end items-center p-2" type="submit">
+                        <ActionIcon variant="transparent"><IconSearch size={20} /></ActionIcon>
+                    </button >
+                </div>
             </div>
-        </div>
+        </form>
+
     )
 }
