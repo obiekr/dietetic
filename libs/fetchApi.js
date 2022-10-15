@@ -12,7 +12,9 @@ export async function fetchAPI(path, paramsObj={}, options={}){
 
     const params = {
         "app_id" : "189e6750",
-        "app_key" :"b52dae2d0dc1b7db57b13dfd7e1b5ae2" 	,
+        "app_key" :"b52dae2d0dc1b7db57b13dfd7e1b5ae2" ,
+        "diet" : ['high-fiber', 'high-protein', 'low-carb', 'low-fat', 'low-sodium'],
+        "health" : ['gluten-free', 'low-sugar', 'sugar-conscious', 'alcohol-free'],
         ...paramsObj
     }
 
@@ -28,4 +30,9 @@ export async function fetchAPI(path, paramsObj={}, options={}){
 
     console.log(`${res.status} :Fetching Error`)
     return;
+}
+
+export async function getRandomRecipe(query){
+
+    const res = await fetchAPI('/v2/recipe', )
 }

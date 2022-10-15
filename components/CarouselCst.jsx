@@ -1,6 +1,7 @@
 import { Carousel } from '@mantine/carousel';
 import CarouseItem from './CarouselItem';
 import { getCalendar } from '@skolacode/calendar-js'
+import { IconArrowLeft, IconArrowRight } from '@tabler/icons';
 
 export default function CarouselCst() {
   const date = new Date()
@@ -20,20 +21,23 @@ export default function CarouselCst() {
     }
   }
 
-  console.log(carouselItemArr)
   return (
     <div className="max-w-full ml-6">
       <Carousel
         slideSize="10%"
-        ml="70px"
-        withIndicators
+        ml="auto"
+        controlSize={60}
         height="100%"
-        // slideGap="xl"
-        align="start">
+        slideGap="xl"
+        align="start"
+        nextControlIcon={<IconArrowRight />}
+        previousControlIcon={<IconArrowLeft />}
+        >
+
         {
           carouselItemArr.map((e, i) => {
             return (
-              <Carousel.Slide ml="80px" key={i}><CarouseItem date={e} /></Carousel.Slide>
+              <Carousel.Slide ml="" key={i}><CarouseItem date={e} /></Carousel.Slide>
             )
           })
         }

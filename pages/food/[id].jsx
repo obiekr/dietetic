@@ -28,7 +28,7 @@ export default function FoodContent() {
     }, [router]);
     
     console.log(recipe)
-    const {label, image, mealType, ingredientLines } = recipe
+    // const {label, image, mealType, ingredientLines } = recipe
 
     return (
         <div className="">

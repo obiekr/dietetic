@@ -7,11 +7,12 @@ import Image from "next/image"
 import Link from 'next/link'
 
 export default function MealPlan({ category, foodname, cal, time }) {
-  let color = {'Breakfast': ['bg-[#D0E0FF]', "hover:bg-[#B1CCFF]"], 
-  "Lunch": ['bg-[#FFF6AA]', 'hover:bg-[#F4EA91]'],
-  "Dinner": ["bg-[#B7BDF3]","hover:bg-[#AAB1EF]"],
-  "Snack": ["bg-[#ABE3B1]", "hover:bg-[#92DF9A]"],
-}
+  let color = {
+    'Breakfast': ['bg-[#D0E0FF]', "hover:bg-[#B1CCFF]"],
+    "Lunch": ['bg-[#FFF6AA]', 'hover:bg-[#F4EA91]'],
+    "Dinner": ["bg-[#B7BDF3]", "hover:bg-[#AAB1EF]"],
+    "Snack": ["bg-[#ABE3B1]", "hover:bg-[#92DF9A]"],
+  }
 
   return (
     <Link href={`/food/${foodname}`}>
@@ -24,9 +25,9 @@ export default function MealPlan({ category, foodname, cal, time }) {
         <div className="bottom-5 left-5 absolute">
           <h5 className='text-2xl font-medium'>{foodname}</h5>
           <div className="flex">
-            <i><ActionIcon variant='default' className="pointer-events-none"><IconFlame size={300} /></ActionIcon></i>
+            <i><ActionIcon variant='transparent' className="pointer-events-none"><IconFlame size={300} /></ActionIcon></i>
             <h6 className='ml-2 mt-auto '>{cal}</h6>
-            <i className='ml-7'><ActionIcon variant='default' className="pointer-events-none"><IconClockHour3 size={300} /></ActionIcon></i>
+            <i className='ml-7'><ActionIcon variant='transparent' className="pointer-events-none"><IconClockHour3 size={300} /></ActionIcon></i>
             <h6 className='ml-2 mt-auto '>{time}</h6>
           </div>
         </div>

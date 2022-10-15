@@ -12,9 +12,11 @@ export default function Home() {
 			<Navbar />
 			<Carousel />
 			<div className="flex justify-center mt-20  ">
-				<button className="text-center font-bold bg-[#C3DBFF] py-8 px-16 rounded-xl hover:bg-blue-100">
-					<Link href="/find">Find Meal</Link>
-				</button>
+				<Link href="/find">
+					<button className="text-center font-bold bg-[#C3DBFF] py-8 px-16 rounded-xl hover:bg-blue-100">
+						Find Meal
+					</button>
+				</Link>
 			</div>
 		</div>
 	);
