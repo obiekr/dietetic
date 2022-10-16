@@ -14,7 +14,7 @@ export default function MealPlan({ category, foodname, cal, img, uri }) {
   }
 
   return (
-    <Link href={`/food/${uri}`}>
+    <Link href={`/food/${uri.split("_").pop()}`}>
       <div className={`px-48 py-20 ${color[category][0]} relative rounded-2xl hover:cursor-pointer ${color[category][1]}`}>
         <div className="absolute -top-20 right-5">
           <Image src={img} width={170} height={170} rounded={'xl'} />
