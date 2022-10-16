@@ -1,8 +1,10 @@
-export default function* shuffle(array, max=0) {
-    console.log(array);
-    var i = max > 0? max : array.length;
+export function* shuffle(array){
+
+    var i = array.length;
+    var j = 0;
 
     while(i--){
-        yield array.splice(Math.floor(Math.random() * (i+1)), i)[0]
+        j=Math.floor(Math.random() * (i+1))
+        yield array.splice(j, 1)[0]
     }
 }

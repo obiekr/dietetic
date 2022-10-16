@@ -1,6 +1,6 @@
 import { waitUntilSymbol } from "next/dist/server/web/spec-extension/fetch-event";
 import qs from "qs";
-import shuffle from "./generator";
+import {shuffle} from "./generator";
 
 export async function fetchAPI(path, paramsObj = {}, options = {}) {
 	const { headers, ...option } = options;
@@ -19,10 +19,8 @@ export async function fetchAPI(path, paramsObj = {}, options = {}) {
 	};
 
 	const queryStr = qs.stringify(params);
-	const reqURL = `https://api.edamam.com/api${path}${
-		queryStr ? `?${queryStr}` : ""
-	}`;
-	// console.log("CLICK ME: ", reqURL);
+	const reqURL = `https://api.edamam.com/api${path}${queryStr ? `?${queryStr}` : ""}`;
+	console.log("CLICK ME: ", reqURL);
 
 	const res = await fetch(reqURL, mergedOption);
 
@@ -50,77 +48,69 @@ export async function fetchRecipe(
 
 	return fetchAPI("/recipes/v2", params, { mode: "cors" });
 }
-function shuffleArray(array) {
-    // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array
-}
+// function shuffleArray(array) {
+//     // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+//     for (let i = array.length - 1; i > 0; i--) {
+//         const j = Math.floor(Math.random() * (i + 1));
+//         [array[i], array[j]] = [array[j], array[i]];
+//     }
+//     return array
+// }
 
-export async function getRandomRecipe(arrQuery) {
-	const NUMBER_MEAL = 14;
-	const RECIPE_PER_INGREDIENT =
-		Math.floor(NUMBER_MEAL / arrQuery.length) / 4 || 1;
+export async function getRandomRecipe(queryInput) {
+	const NUMBER_MEAL = 7;
+
+	//since there is a limitation in fetching limit, we'll be selecting query randomly
+	const arrQuery = queryInput.splice(Math.floor(Math.random() * (queryInput.length+1)), 1)
+	console.log("query query : ", arrQuery)
 
 	var arrBreakfast = [];
-	var arrLunch = [];
-	var arrDinner = [];
+	var arrBigMeal = []
 	var arrSnack = [];
+	var plan = [];
 
-	// let breakfast = await fetchRecipe(query, "Breakfast");
+
 	async function asyncmap() {
 		return Promise.all(
 			arrQuery.map(async (query, index) => {
-				let [breakfast, lunch, dinner, snack] = await Promise.all([
+				let [breakfast, bigMeal, snack] = await Promise.all([
 					fetchRecipe(query, "Breakfast"),
-					fetchRecipe(query, "Lunch"),
-					fetchRecipe(query, "Dinner"),
+					fetchRecipe(query, ["Lunch", "Dinner"]),
 					fetchRecipe(query, "Snack"),
 				]);
-				console.log("length:", query, breakfast);
-				arrBreakfast.push(breakfast);
-				arrLunch.push(lunch);
-				arrDinner.push(dinner);
-				arrSnack.push(snack);
+				
+				arrBreakfast = arrBreakfast.concat(breakfast.hits);
+				arrBigMeal = arrBigMeal.concat(bigMeal.hits);
+				arrSnack = arrSnack.concat(snack.hits);
+				console.log("bigmeal", bigMeal)
 			})
 		);
 	}
 
-	asyncmap().then(() => {
-		console.log("end");
-		console.log("arrBreakfast b4", arrBreakfast);
-        // randomize array langsung (NOT WORKING)
-		for (let i = 0; i < arrBreakfast.length; i++) {
-            arrBreakfast[i]["hits"] = shuffleArray(arrBreakfast[i]["hits"])
-            arrLunch[i]["hits"] = shuffleArray(arrLunch[i]["hits"])
-            arrDinner[i]["hits"] = shuffleArray(arrDinner[i]["hits"])
-            arrSnack[i]["hits"] = shuffleArray(arrSnack[i]["hits"])
-        }
-		console.log("arrBreakfast after", arrBreakfast);
-		// var randBreakfast = shuffle(arrBreakfast);
-		// var randLunch = shuffle(arrLunch);
-		// var randDinner = shuffle(arrDinner);
-		// var randSnack = shuffle(arrSnack);
+	return asyncmap().then(() => {
+		console.log(arrBreakfast)
+		console.log("big meal", arrBigMeal)
 
-		const plan = [];
+		var randBreakfast = shuffle(arrBreakfast)
+		var randBigMeal = shuffle(arrBigMeal)
+		var randSnack = shuffle(arrSnack)
+
 		for (let i = 0; i < NUMBER_MEAL; i++) {
 			let meal = {};
-			// meal.breakfast = randBreakfast.next().value;
-			// meal.lunch = randLunch.next().value;
-			// meal.dinner = randDinner.next().value;
-			// meal.snack = randSnack.next().value;
-			meal.breakfast = arrBreakfast[Math.floor(Math.random() * (arrBreakfast.length))]["hits"][i]
-			meal.lunch = arrLunch[Math.floor(Math.random() * (arrBreakfast.length))]["hits"][i]
-			meal.dinner = arrDinner[Math.floor(Math.random() * (arrBreakfast.length))]["hits"][i]
-			meal.snack = arrSnack[Math.floor(Math.random() * (arrBreakfast.length))]["hits"][i]
 
+			meal.breakfast = randBreakfast.next().value
+			meal.lunch = randBigMeal.next().value
+			meal.dinner = randBigMeal.next().value
+			meal.snack = randSnack.next().value
+
+			console.log(`meal-${i} : `, meal);
 			plan.push(meal);
 		}
 
-		console.log(plan);
+		console.log("weekly plan: ", plan);
+		// localStorage.setItem("plan", JSON.stringify(plan))
+		return plan
 	});
 
-	// return plan;
+	// return plan
 }

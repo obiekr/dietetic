@@ -1,16 +1,23 @@
 import { Carousel } from '@mantine/carousel';
 import CarouseItem from './CarouselItem';
-import { getCalendar } from '@skolacode/calendar-js'
 import { IconArrowLeft, IconArrowRight } from '@tabler/icons';
+import { useEffect, useState } from 'react';
 
 export default function CarouselCst() {
+	const [plan, setPlan] = useState([])
+  
+  useEffect(() => {
+    const generated = JSON.parse(localStorage.getItem("plan"))
+    if (generated !== null) {
+      setPlan(generated)
+      console.log("plan generated", generated)
+    }
+  }, [])
+
   const date = new Date()
-  // const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
   const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-  // console.log(firstDay.getDay());
   var carouselItemArr = []
 
-  console.log(lastDay)
 
   for (let i = date.getDate(); i < (date.getDate() + 7 > lastDay ? lastDay : date.getDate() + 7); i++) {
     carouselItemArr.push(new Date(date.getFullYear(), date.getMonth(), i))
@@ -32,14 +39,16 @@ export default function CarouselCst() {
         align="start"
         nextControlIcon={<IconArrowRight />}
         previousControlIcon={<IconArrowLeft />}
-        >
+      >
 
-        {
+        {plan.length > 0 ?
           carouselItemArr.map((e, i) => {
             return (
-              <Carousel.Slide ml="" key={i}><CarouseItem date={e} /></Carousel.Slide>
+              <Carousel.Slide ml="" key={i}><CarouseItem date={e} planItem={plan[i]} index={i}/></Carousel.Slide>
             )
           })
+          :
+          <></>
         }
 
         {/* ...other slides */}
