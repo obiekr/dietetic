@@ -59,7 +59,7 @@ export default function Date(context) {
                             foodname={plan["lunch"]["recipe"]["label"]}
                             cal={Math.round(plan["lunch"]["recipe"]["calories"])}
                             img={plan["lunch"]["recipe"]["image"]}
-                            uri = {plan["breakfast"]["recipe"]["uri"]}
+                            uri = {plan["lunch"]["recipe"]["uri"]}
                             /></div>
                     </div>
                     <div className="flex justify-center flex-wrap">
@@ -68,14 +68,14 @@ export default function Date(context) {
                             foodname={plan["dinner"]["recipe"]["label"]}
                             cal={Math.round(plan["dinner"]["recipe"]["calories"])}
                             img={plan["dinner"]["recipe"]["image"]}
-                            uri = {plan["breakfast"]["recipe"]["uri"]}
+                            uri = {plan["dinner"]["recipe"]["uri"]}
                             /></div>
                         <div className="mx-10 my-16"><MealPlan
                             category="Snack"
                             foodname={plan["snack"]["recipe"]["label"]}
                             cal={Math.round(plan["snack"]["recipe"]["calories"])}
                             img={plan["snack"]["recipe"]["image"]}
-                            uri = {plan["breakfast"]["recipe"]["uri"]}
+                            uri = {plan["snack"]["recipe"]["uri"]}
                             /></div>
                     </div>
                 </div>
