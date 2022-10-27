@@ -1,6 +1,7 @@
-import { waitUntilSymbol } from "next/dist/server/web/spec-extension/fetch-event";
+// import { waitUntilSymbol } from "next/dist/server/web/spec-extension/fetch-event";
 import qs from "qs";
 import {shuffle} from "./generator";
+
 
 export async function fetchAPI(path, paramsObj = {}, options = {}) {
 	const { headers, ...option } = options;
@@ -13,8 +14,8 @@ export async function fetchAPI(path, paramsObj = {}, options = {}) {
 	};
 
 	const params = {
-		app_id: "7f5b331d",
-		app_key: "b7873d60e63c1ad615fa777f35f6372a",
+		app_id: process.env.APPID,
+		app_key: process.env.APPKEY,
 		...paramsObj,
 	};
 

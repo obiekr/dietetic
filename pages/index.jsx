@@ -1,9 +1,5 @@
-import Head from "next/head";
-import Image from "next/image";
 import CarouselCst from "../components/CarouselCst";
 import Navbar from "../components/Navbar";
-import { Button } from "@mantine/core";
-import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import {useEffect, useState} from "react"
 import { useRouter } from "next/router";
@@ -24,7 +20,7 @@ export default function Home() {
 		}
 
 	}, [router])
-	
+	console.log("env", process.env.APPID)
 	return (
 		<div className={``}>
 			<Navbar />
